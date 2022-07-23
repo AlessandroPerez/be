@@ -9,14 +9,14 @@ const {handleGetPost,
 
 const router = express.Router();
 
-router.use(passport.authenticate('local'));
+//router.use(passport.authenticate('local'));
 
 const Post = require('../models/Posts');
 
 
 // Gets back all the posts
 
-router.get('/', async (req, res) => {
+router.get('/', passport.authenticate('local'),  async (req, res) => {
     res.json(await handleGetPost());
 });
 

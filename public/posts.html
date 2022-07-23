@@ -1,0 +1,37 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div class="container"></div>
+<script>
+async function getPosts() {
+    try {
+        let res = await axios({
+            url: '/posts',
+            data: JSON.parse(localStorage.getItem('cosine')),
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        });
+        return res.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+async function renderPosts() {
+    let posts = await getPosts();
+    let html = '';
+    posts.forEach(posts => {
+        let htmlSegment = `<div class="posts">
+                            <h2>${posts.title}</h2>
+                            <div class="description">${posts.description}</div>
+                        </div>`;
+
+        html += htmlSegment;
+    });
+
+    let container = document.querySelector('.container');
+    container.innerHTML = html;
+}
+
+renderPosts();
+
+</script>

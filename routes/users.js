@@ -11,7 +11,8 @@ const router = express.Router();
 
 // Register User
 router.post('/register',async function(req, res){
-  res.json(await handlePostUser(req.body.name, req.body.email, req.body.username, req.body.password))
+    await handlePostUser(req.body.name, req.body.email, req.body.username, req.body.password);
+    res.redirect('/posts.html');
 });
 
 
@@ -19,7 +20,7 @@ router.post('/register',async function(req, res){
 router.post('/login',
     passport.authenticate('local'),
     function(req, res) {
-        res.send(req.user);
+        res.redirect('/posts.html');
     }
 );
 

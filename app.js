@@ -10,7 +10,8 @@ require('dotenv/config');
 const { hashPassword } = require('./controller/users');
 const { User } = require('./models/User');
 var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require('bcryptjs'); 
+var bcrypt = require('bcryptjs');
+var path = require('path'); 
 
 // BodyParser Middleware
 app.use(bodyParser.json());
@@ -53,6 +54,9 @@ app.use(session({
    resave: true
 }));
 
+// Static Middleware
+app.use(express.static(path.join(__dirname, 'public')))
+   
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
