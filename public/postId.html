@@ -1,7 +1,84 @@
+<!DOCTYPE html>   
+<html>   
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<title> Edit Post </title>  
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<div class="container"></div>
-<div class="buttons-container"></div>
-<button><a href="/posts.html" class="icon fa-cogs" style="color: rgb(0, 0, 0); padding: 15px; margin: 10px 0px; border: none; cursor: pointer; text-decoration: none;">Back to all the posts</a></button>
+<style>   
+Body {  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color: rgb(255, 255, 255);  
+}  
+button {   
+       background-color: #5663f0;   
+       width: 100%;  
+        color: rgb(255, 255, 255);   
+        padding: 15px;   
+        margin: 10px 0px;   
+        border: none;   
+        cursor: pointer;   
+         }   
+ form {   
+        border: 3px solid #000000;   
+    }   
+ input[type=text], input[type=password] {   
+        width: 100%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid rgb(0, 0, 0);   
+        box-sizing: border-box;   
+    }  
+ button:hover {   
+        opacity: 0.7;   
+    }   
+  .cancelbtn {   
+        width: auto;   
+        padding: 10px 18px;  
+        margin: 10px 5px;  
+    }   
+        
+     
+ .container {   
+        padding: 25px;
+        display: flex;
+        row-gap: 40px;
+        justify-content: space-between;  
+    }   
+.writer {
+        margin-bottom: 0.5rem;
+}
+.button-container{
+    display:flex;
+    gap: 1rem;
+}
+
+.button-container button {
+    flex-grow: 1; 
+    margin: 0;
+}
+
+.description {
+    word-wrap: normal;
+    word-break: break-all;
+    white-space: normal;
+    display: block;
+    height: auto;
+    margin: 3px auto;
+    line-height: 1.4;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+</style>   
+</head>    
+<body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div style="background-color: lightblue;">
+    <div class="container"></div>
+    <div class="button-container"></div>
+</div>
+<a href="/posts.html" class="icon fa-cogs" style="color: rgb(255, 255, 255); border: none; cursor: pointer; text-decoration: none;"><button>Back to all the posts</button></a>
 <script>
 async function getPost() {
     try {
@@ -22,7 +99,7 @@ async function renderPosts() {
     let container = document.querySelector('.container');
     container.innerHTML = `<div class="posts">
                             <h2>${post.title}</h2>
-                            <div class="description">by ${post.writer.username}</div>
+                            <div class="writer" style="color:gray">by ${post.writer.username}</div>
                             <div class="description">${post.description}</div>
                         </div>`;
     renderButtons(post.owner);
@@ -30,9 +107,9 @@ async function renderPosts() {
 
 async function renderButtons(owner) {
     if (owner == true){
-        let container = document.querySelector('.buttons-container');
+        let container = document.querySelector('.button-container');
         container.innerHTML = `<button onclick="deletePost()">Delete</button>
-        <button><a href="/editPost.html" style="text-decoration: none;color: rgb(0, 0, 0)">Edit</a></button>`;
+        <button><a href="/editPost.html" style="text-decoration: none;color: rgb(255, 255, 255)">Edit</a></button>`;
         }
 }
 

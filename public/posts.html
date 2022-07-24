@@ -1,7 +1,62 @@
+<!DOCTYPE html>   
+<html>   
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<title> Edit Post </title>  
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<style>   
+Body {  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color: rgb(255, 255, 255);  
+}  
+button {   
+       background-color: #5663f0;   
+       width: 100%;  
+        color: rgb(255, 255, 255);   
+        padding: 15px;   
+        margin: 10px 0px;   
+        border: none;   
+        cursor: pointer;   
+         }   
+ form {   
+        border: 3px solid #000000;   
+    }   
+ 
+ button:hover {   
+        opacity: 0.7;   
+    }    
+     
+ .container {   
+        justify-content: space-between;   
+    }
+.posts {
+    background-color: lightblue;
+    padding: 10px;
+    margin-bottom: 20px;
+}   
+.writer {
+        margin-bottom: 0.5rem;
+}
+
+.description {
+    word-wrap: normal;
+    word-break: break-all;
+    white-space: normal;
+    display: block;
+    height: auto;
+    margin: 3px auto;
+    line-height: 1.4;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+</style>   
+</head>    
+<body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <div class="container"></div>
 <button onclick="renderPosts()">load more</button>
-<button><a href="/newPost.html" class="icon fa-cogs" style="color: rgb(0, 0, 0); padding: 15px; margin: 10px 0px; border: none; cursor: pointer; text-decoration: none;">Write new post</a></button>
+<button><a href="/newPost.html" class="icon fa-cogs" style="color: rgb(255, 255, 255); padding: 15px; margin: 10px 0px; border: none; cursor: pointer; text-decoration: none;">Write new post</a></button>
 <script>
 async function getPosts() {
     try {
@@ -17,8 +72,8 @@ async function getPosts() {
 }
 
 function ellipsify (str) {
-    if (str.length > 140) {
-        return (str.substring(0, 140) + "...");
+    if (str.length > 300) {
+        return (str.substring(0, 300) + "...");
     }
     else {
         return str;
@@ -37,7 +92,7 @@ async function renderPosts() {
     posts.forEach(post => {
         let htmlSegment = `<div class="posts">
                             <h2><a onclick="savePostId('${post._id}')">${post.title}</a></h2>
-                            <div class="description">by ${post.writer.username}</div>
+                            <div class="writer" style="color:gray">by ${post.writer.username}</div>
                             <div class="description">${ellipsify(post.description)}</div>
                         </div>`;
 
