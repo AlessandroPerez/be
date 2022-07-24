@@ -22,7 +22,7 @@ router.post('/register',async function(req, res){
 });
 
 
-// Endpoint to login
+// Endpoint to login.
 router.post('/login',
     passport.authenticate('local'),
     checkAuthenticated,
