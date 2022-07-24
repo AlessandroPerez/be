@@ -22,12 +22,17 @@ async function handlePostUser(name, email, username, password) {
     });
     return savedUser.toJSON({virtuals: true});
   } catch (err) {
-    return {message:err};
+    throw err;
   }        
+}
+
+async function getUserById(userId) {
+  return User.findById(userId);
 }
 
 
 module.exports = {
     hashPassword,
     handlePostUser,
+    getUserById,
   }

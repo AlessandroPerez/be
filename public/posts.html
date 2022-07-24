@@ -1,36 +1,55 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <div class="container"></div>
+<button onclick="renderPosts()">load more</button>
+<button><a href="/newPost.html" class="icon fa-cogs" style="color: rgb(0, 0, 0); padding: 15px; margin: 10px 0px; border: none; cursor: pointer; text-decoration: none;">Write new post</a></button>
 <script>
 async function getPosts() {
     try {
         let res = await axios({
-            url: '/posts',
-            data: JSON.parse(localStorage.getItem('cosine')),
+            url: '/posts?page=' + counter,
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
         });
-        return res.json();
+        return res.data;
     } catch (error) {
         console.log(error);
     }
 }
 
+function ellipsify (str) {
+    if (str.length > 140) {
+        return (str.substring(0, 140) + "...");
+    }
+    else {
+        return str;
+    }
+}
+
+function savePostId(id){
+    localStorage.setItem("postId",id);
+    window.location.pathname = '/postId.html'
+}
 
 async function renderPosts() {
     let posts = await getPosts();
+    counter ++;
     let html = '';
-    posts.forEach(posts => {
+    posts.forEach(post => {
         let htmlSegment = `<div class="posts">
-                            <h2>${posts.title}</h2>
-                            <div class="description">${posts.description}</div>
+                            <h2><a onclick="savePostId('${post._id}')">${post.title}</a></h2>
+                            <div class="description">by ${post.writer.username}</div>
+                            <div class="description">${ellipsify(post.description)}</div>
                         </div>`;
 
         html += htmlSegment;
     });
 
     let container = document.querySelector('.container');
-    container.innerHTML = html;
+    container.innerHTML = container.innerHTML + html;
+
 }
+
+let counter = 0;
 
 renderPosts();
 

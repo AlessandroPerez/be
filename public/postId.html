@@ -1,0 +1,59 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div class="container"></div>
+<div class="buttons-container"></div>
+<button><a href="/posts.html" class="icon fa-cogs" style="color: rgb(0, 0, 0); padding: 15px; margin: 10px 0px; border: none; cursor: pointer; text-decoration: none;">Back to all the posts</a></button>
+<script>
+async function getPost() {
+    try {
+        let res = await axios({
+            url: '/posts/' + localStorage.getItem("postId"),
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        });
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+async function renderPosts() {
+    let post = await getPost();
+    let container = document.querySelector('.container');
+    container.innerHTML = `<div class="posts">
+                            <h2>${post.title}</h2>
+                            <div class="description">by ${post.writer.username}</div>
+                            <div class="description">${post.description}</div>
+                        </div>`;
+    renderButtons(post.owner);
+}
+
+async function renderButtons(owner) {
+    if (owner == true){
+        let container = document.querySelector('.buttons-container');
+        container.innerHTML = `<button onclick="deletePost()">Delete</button>
+        <button><a href="/editPost.html" style="text-decoration: none;color: rgb(0, 0, 0)">Edit</a></button>`;
+        }
+}
+
+async function deletePost(){
+    let postId = localStorage.getItem("postId");
+    try {
+        let res = await axios({
+            url: '/posts/' + postId,
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+        });
+        window.location.pathname = '/posts.html'
+    } catch (error) {
+        console.log(error);
+    } 
+}
+
+
+
+let counter = 0;
+
+renderPosts();
+
+</script>

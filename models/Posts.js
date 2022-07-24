@@ -9,6 +9,9 @@ const PostSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  writer:{
+    type: mongoose.Types.ObjectId,
+  },
   likes: {
     type: Array,
     default: []

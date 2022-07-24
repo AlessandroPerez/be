@@ -2,7 +2,7 @@
 <html>   
 <head>  
 <meta name="viewport" content="width=device-width, initial-scale=1">  
-<title> Login Page </title>  
+<title> New Post </title>  
 <style>   
 Body {  
   font-family: Calibri, Helvetica, sans-serif;  
@@ -45,16 +45,16 @@ button {
 </style>   
 </head>    
 <body>    
-    <center> <h1> Log in BestPosts </h1> </center>   
-    <form method="post" action="users/login">  
+    <center> <h1> New wonderfull post </h1> </center>   
+    <form method="post" action="/posts">  
         <div class="container">   
-            <label>Username : </label>   
-            <input id="username" type="text" placeholder="Enter Username" name="username" required>  
-            <label>Password : </label>   
-            <input id="password" type="password" placeholder="Enter Password" name="password" required>  
-            <button type="submit">Login</button>       
+            <label>Tile : </label>   
+            <input id="title" type="text" placeholder="Enter Title" name="title" required>  
+            <label>Description : </label>   
+            <textarea id="description" type="text" placeholder="Enter what you want to tell" name="description" rows="20" required style="width:100%; box-sizing: border-box;"> </textarea>
+            <button type="submit">Share your post</button> 
         </div>   
     </form>
-    <button><a href="/register.html" class="icon fa-cogs" style="color: rgb(255, 255, 255); padding: 15px; margin: 10px 0px; border: none; cursor: pointer; text-decoration: none;">Sign up</a></button>
+    <button><a href="/posts.html" class="icon fa-cogs" style="color: rgb(255, 255, 255);; padding: 15px; margin: 10px 0px; border: none; cursor: pointer; text-decoration: none;">Batck to all the posts</a></button>
 </body>     
-</html>  
+</html>

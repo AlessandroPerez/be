@@ -6,21 +6,32 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var User = require('../models/User');
 const { handlePostUser } = require('../controller/users');
+const { checkAuthenticated } = require('../authentication');
 
 const router = express.Router();
 
 // Register User
 router.post('/register',async function(req, res){
-    await handlePostUser(req.body.name, req.body.email, req.body.username, req.body.password);
-    res.redirect('/posts.html');
+    try {
+        await handlePostUser(req.body.name, req.body.email, req.body.username, req.body.password);
+        res.redirect('/login.html');
+    } catch {
+        res.redirect('/register.html');
+    }
+
 });
 
 
 // Endpoint to login
 router.post('/login',
     passport.authenticate('local'),
+    checkAuthenticated,
     function(req, res) {
-        res.redirect('/posts.html');
+        try {
+            res.redirect('/posts.html');
+        } catch {
+            res.redirect('/login.html');
+        }
     }
 );
 
