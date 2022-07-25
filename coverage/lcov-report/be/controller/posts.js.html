@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.09% </span>
+                <span class="strong">42.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/33</span>
+                <span class='fraction'>14/33</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>1/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.67% </span>
+                <span class="strong">45.16% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/31</span>
+                <span class='fraction'>14/31</span>
             </div>
         
             
@@ -150,11 +150,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -164,14 +164,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -230,12 +230,12 @@ const {getUserById} = require('./users');
 &nbsp;
 // Gets back all the posts
 &nbsp;
-async function <span class="fstat-no" title="function not covered" >handleGetPost(</span>page){
-<span class="cstat-no" title="statement not covered" >   try{</span>
-    const posts = <span class="cstat-no" title="statement not covered" >await Post.find({},null,{skip: 5*page, limit: 5}).sort({_id:-1});</span>
-<span class="cstat-no" title="statement not covered" >    return await Promise.all(posts.map(<span class="fstat-no" title="function not covered" >as</span>ync (post) =&gt; {</span>
-      const user = <span class="cstat-no" title="statement not covered" >await getUserById(post.writer);</span>
-<span class="cstat-no" title="statement not covered" >      return {...(post.toJSON({virtuals: true})), writer: user.toJSON({virtuals: true})};</span>
+async function handleGetPost(page){
+   try{
+    const posts = await Post.find({},null,{skip: 5*page, limit: 5}).sort({_id:-1});
+    return await Promise.all(posts.map(async (post) =&gt; {
+      const user = await getUserById(post.writer);
+      return {...(post.toJSON({virtuals: true})), writer: user.toJSON({virtuals: true})};
     }));
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    return {message:err};</span>
@@ -244,15 +244,15 @@ async function <span class="fstat-no" title="function not covered" >handleGetPos
 &nbsp;
 // Get back a single post
 &nbsp;
-async function <span class="fstat-no" title="function not covered" >handleGetSinglePost(</span>postId, utente){
-<span class="cstat-no" title="statement not covered" >  try{</span>
-    let owner = <span class="cstat-no" title="statement not covered" >false;</span>
-    const post = <span class="cstat-no" title="statement not covered" >await Post.findById(postId);</span>
-    const user = <span class="cstat-no" title="statement not covered" >await getUserById(post.writer);</span>
-<span class="cstat-no" title="statement not covered" >    if (post.writer.toString() == utente) {</span>
+async function handleGetSinglePost(postId, utente){
+  try{
+    let owner = false;
+    const post = await Post.findById(postId);
+    const user = await getUserById(post.writer);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (post.writer.toString() == utente) {
 <span class="cstat-no" title="statement not covered" >      owner = true;</span>
     }
-<span class="cstat-no" title="statement not covered" >    return {...(post.toJSON({virtuals: true})), writer: user.toJSON({virtuals: true}),owner};</span>
+    return {...(post.toJSON({virtuals: true})), writer: user.toJSON({virtuals: true}),owner};
  } catch (err) {
 <span class="cstat-no" title="statement not covered" >   return {message:err};</span>
  }
@@ -313,7 +313,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-25T09:29:06.684Z
+                at 2022-07-25T10:44:48.569Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
