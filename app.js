@@ -11,7 +11,31 @@ const { hashPassword } = require('./controller/users');
 const { User } = require('./models/User');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
-var path = require('path'); 
+var path = require('path');
+const swaggerUI = require("swagger-ui-express") 
+const swaggerJsDoc = require("swagger-jsdoc")
+
+const options = {
+   definition:{
+      openapi:"3.0.0",
+      info:{
+         title:"Library API",
+         version:"1.0.0",
+         description:"A library API to write and share your posts",
+      },
+      servers: [
+         {
+            url:"http://localhost:3000",
+            url:"https://bestposts.herokuapp.com/"
+         }
+      ],
+   },
+   apis: ["routes/*.js"]
+}
+
+const specs = swaggerJsDoc(options);
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 // BodyParser Middleware
 app.use(bodyParser.json());
