@@ -37,4 +37,8 @@ Tutte le stories o task accettano un livello minimo di qualita' al interno del p
 
 Il goal dello sprint e' quello di implementare le user story dalla 1 alla 6
 
+Qui ci sono i test fatti per il progetto: https://docs.google.com/spreadsheets/d/1AAgIv2aTDOEMbgNZbiebZhNQRz8qRiSYKaVsbWsuj08/edit?usp=sharing
+
 Per questo sprint ho utilizzato un metodo kanban il qual mi ha aiutato a capire su quale task impegarmi ogni giorno
+
+Lo stack utilizzato e' quello di nodejs express mongoDB per il bakend e pagine html per il front il prodotto viene automaticamente deployed su Heroku ad ogni cambiamento alla main branch
