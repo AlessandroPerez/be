@@ -13,5 +13,22 @@ Il progetto e' cosi strutturato:
 
 - app.js = creazione server, connessione a mongoDB e creazione middlware
 
--
-https://docs.google.com/spreadsheets/d/1Tpy1qh_slZI2_upM3QbwYIhepA7w_PiJ0yiZHid5Q9s/edit#gid=0
+- models = creazione dei mongoose schema di post e user
+
+- routes = roter per user e post
+
+- controller = logica per le diverse route
+
+- public = pagine html
+
+- workflow = logica della CI
+
+- test = end point testing con Jest
+
+- coverage = coverage del testing auto generato da Jest
+
+La strategia di branching usata e' quella di master only branching essendo io l'unico autore.
+
+Il product backlog e' possibile vederlo al link: https://docs.google.com/spreadsheets/d/1Tpy1qh_slZI2_upM3QbwYIhepA7w_PiJ0yiZHid5Q9s/edit#gid=0
+
+
