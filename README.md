@@ -31,4 +31,10 @@ La strategia di branching usata e' quella di master only branching essendo io l'
 
 Il product backlog e' possibile vederlo al link: https://docs.google.com/spreadsheets/d/1Tpy1qh_slZI2_upM3QbwYIhepA7w_PiJ0yiZHid5Q9s/edit#gid=0
 
+La definition of done utilizzata e' la seguente:
 
+Tutte le stories o task accettano un livello minimo di qualita' al interno del progetto
+
+Il goal dello sprint e' quello di implementare le user story dalla 1 alla 6
+
+Per questo sprint ho utilizzato un metodo kanban il qual mi ha aiutato a capire su quale task impegarmi ogni giorno
