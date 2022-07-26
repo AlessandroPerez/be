@@ -37,6 +37,8 @@ Tutte le stories o task accettano un livello minimo di qualita' al interno del p
 
 Il goal dello sprint e' quello di implementare le user story dalla 1 alla 6
 
+Per qanto riguard lo srint planning essendo l'unico developer tutte le task sono sviluppate da me durante lo sprint ho utilizzato una metodologia Kanban
+
 Qui ci sono i test fatti per il progetto: https://docs.google.com/spreadsheets/d/1AAgIv2aTDOEMbgNZbiebZhNQRz8qRiSYKaVsbWsuj08/edit?usp=sharing
 
 Per questo sprint ho utilizzato un metodo kanban il qual mi ha aiutato a capire su quale task impegarmi ogni giorno
